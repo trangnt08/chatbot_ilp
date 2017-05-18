@@ -56,6 +56,8 @@ var actions = {
 		}
 		var subject = firstEntityValue(entities,'subject')
 		var number = firstEntityValue(entities,'number')
+		var cahoc = '19h~21h';
+		var monhoc = 'toan';
 
 		if (subject && number) {
 			// delete context.missingSubject
@@ -89,6 +91,12 @@ var actions = {
 		cb(context)
 		delete context.subject
 		delete context.number
+	},
+
+	['getCahocmonhoc'](sessionId, context, cb){
+		cb(context)
+		delete context.cahoc
+		delete context.monhoc
 	},
 
 	['fetch-pics'](sessionId, context, cb) {
