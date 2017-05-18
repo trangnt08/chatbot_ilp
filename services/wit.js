@@ -88,7 +88,7 @@ var actions = {
 
 	['getName'](sessionId, context, cb){
 		cb(context)
-		// delete context.na
+		delete context.na
 	},
 
 	// list of functions Wit.ai can execute
