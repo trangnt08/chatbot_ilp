@@ -37,12 +37,12 @@ var read = function (sender, message, reply) {
 		message = 'Hello yourself! I am a chat bot."'
 		reply(sender, message)
 	} 
-	// else if(message === 'start') {
-	// 	new CronJob('30 * * * * *', function() {
- //  		message = 'i send this message every 10 second';
- //  		reply(sender,message);
-	// 	}, null, true, 'Asia/Ho_Chi_Minh');
-	// }
+	else if(message === 'start') {
+		new CronJob('30 * * * * *', function() {
+  		message = 'i send this message every 10 second';
+  		reply(sender,message);
+		}, null, true, 'Asia/Ho_Chi_Minh');
+	}
 	else {
 		// Let's find the user
 		var sessionId = findOrCreateSession(sender)
