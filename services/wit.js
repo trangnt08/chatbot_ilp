@@ -59,6 +59,10 @@ var actions = {
 		var cahoc = "19h~21h";
 		var monhoc = "toan";
 
+		if(cahoc && monhoc){
+			context.cahoc=cahoc
+			context.monhoc=monhoc
+		}
 		if (subject && number) {
 			// delete context.missingSubject
 			context.subject=subject
@@ -73,10 +77,7 @@ var actions = {
 			context.subject=subject
 		}
 		
-		if(cahoc && monhoc){
-			context.cahoc=cahoc
-			context.monhoc=monhoc
-		}
+		
 		
 		cb(context)
 	},
@@ -99,11 +100,9 @@ var actions = {
 	},
 
 	['getCahocmonhoc'](sessionId, context, cb){
-		context.cahoc=cahoc
-			context.monhoc=monhoc
 		cb(context)
-		// delete context.cahoc
-		// delete context.monhoc
+		delete context.cahoc
+		delete context.monhoc
 	},
 
 	['fetch-pics'](sessionId, context, cb) {
