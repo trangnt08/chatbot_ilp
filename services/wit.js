@@ -56,8 +56,8 @@ var actions = {
 		}
 		var subject = firstEntityValue(entities,'subject')
 		var number = firstEntityValue(entities,'number')
-		var cahoc = '19h~21h';
-		var monhoc = 'toan';
+		var cahoc = "19h~21h";
+		var monhoc = "toan";
 
 		if (subject && number) {
 			// delete context.missingSubject
@@ -88,7 +88,7 @@ var actions = {
 
 	['getName'](sessionId, context, cb){
 		cb(context)
-		delete context.na
+		// delete context.na
 	},
 
 	// list of functions Wit.ai can execute
