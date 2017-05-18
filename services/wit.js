@@ -99,9 +99,11 @@ var actions = {
 	},
 
 	['getCahocmonhoc'](sessionId, context, cb){
+		context.cahoc=cahoc
+			context.monhoc=monhoc
 		cb(context)
-		delete context.cahoc
-		delete context.monhoc
+		// delete context.cahoc
+		// delete context.monhoc
 	},
 
 	['fetch-pics'](sessionId, context, cb) {
