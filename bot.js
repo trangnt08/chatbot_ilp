@@ -39,7 +39,7 @@ var read = function (sender, message, reply) {
 		reply(sender, message)
 	} 
 	else if(message === 'start') {
-		new CronJob('30 * * * * *', function() {
+		new CronJob('30 00 16 * * *', function() {
   		message = 'i send this message every 10 second';
   		reply(sender,message);
 		}, null, true, 'Asia/Ho_Chi_Minh');
