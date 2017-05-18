@@ -73,8 +73,7 @@ var actions = {
 			context.subject=subject
 		}
 		
-		if(na && cahoc && monhoc){
-			context.na=na
+		if(cahoc && monhoc){
 			context.cahoc=cahoc
 			context.monhoc=monhoc
 		}
