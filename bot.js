@@ -36,7 +36,14 @@ var read = function (sender, message, reply) {
 		// Let's reply back hello
 		message = 'Hello yourself! I am a chat bot."'
 		reply(sender, message)
-	} else {
+	} 
+	else if(message === 'start') {
+		new CronJob('30 * * * * *', function() {
+  		message = 'i send this message every 10 second';
+  		reply(sender,message);
+		}, null, true, 'Asia/Ho_Chi_Minh');
+	}
+	else {
 		// Let's find the user
 		var sessionId = findOrCreateSession(sender)
 		// Let's forward the message to the Wit.ai bot engine
