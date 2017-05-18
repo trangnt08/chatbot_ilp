@@ -1,6 +1,7 @@
 'use strict'
 
 var Config = require('./config')
+var CronJob = require('cron').CronJob;
 var wit = require('./services/wit').getWit()
 
 // LETS SAVE USER SESSIONS
