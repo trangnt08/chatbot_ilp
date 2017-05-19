@@ -7,6 +7,7 @@ var Config = require('../config')
 var newRequest = request.defaults({
 	uri: 'https://graph.facebook.com/v2.6/me/messages',
 	method: 'POST',
+	// json: true,
 	json: {
 		message: {
             attachment: {
@@ -14,19 +15,6 @@ var newRequest = request.defaults({
 			  	"greeting":{
 			    	"text":"Timeless apparel for the masses."
 			  	}
-
-                // type: "template",
-                // payload: {
-                //     template_type: "generic",
-                //     elements: {
-                //         "title": "Your Title",
-                //         "subtitle": "Welcome to my messenger bot",
-                //         "setting_type":"greeting",
-                //         "greeting":{
-                //         "text":"Hi {{user_first_name}}, welcome to this bot."
-                //       }
-                //     }
-                // }
             }
         }
 	},
