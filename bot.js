@@ -2,6 +2,7 @@
 
 var Config = require('./config')
 var CronJob = require('cron').CronJob;
+var yesno = require('yesno');
 var wit = require('./services/wit').getWit()
 
 // LETS SAVE USER SESSIONS
@@ -39,8 +40,17 @@ var read = function (sender, message, reply) {
 		reply(sender, message)
 	} 
 	else if(message === 'start') {
-		new CronJob('30 00 16 * * *', function() {
-  		message = 'i send this message every 10 second';
+		new CronJob('30 * * * * *', function() {
+
+			message= yesno.ask('Are you sure you want to continue?', true, function(ok) {
+    			if(ok) {
+        			console.log("Yay!");
+    			} else {
+        			console.log("Nope.");
+    			}
+			});
+
+  		// message = 'i send this message every 10 second';
   		reply(sender,message);
 		}, null, true, 'Asia/Ho_Chi_Minh');
 	}
