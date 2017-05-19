@@ -45,38 +45,38 @@ app.get('/webhooks', function (req, res) {
 
 // to send messages to facebook
 app.post('/webhooks', function (req, res) {
-  // var entry = FB.getMessageEntry(req.body)
-  // // IS THE ENTRY A VALID MESSAGE?
-  // if (entry && entry.message) {
-  //   if (entry.message.attachments) {
-  //     // NOT SMART ENOUGH FOR ATTACHMENTS YET
-  //     FB.newMessage(entry.sender.id, "That's interesting!")
-  //   } else {
-  //     // SEND TO BOT FOR PROCESSING
-  //     Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
-  //       FB.newMessage(sender, reply)
-  //     })
-  //   }
-  // }
-
-  // res.sendStatus(200)
-
-
-
-  if (req.body.object == "page") {
-    // Iterate over each entry
-    // There may be multiple entries if batched
-    req.body.entry.forEach(function(entry) {
-      // Iterate over each messaging event
-      entry.messaging.forEach(function(event) {
-        if (event.postback) {
-          processPostback(event);
-        }
-      });
-    });
-
-    res.sendStatus(200);
+  var entry = FB.getMessageEntry(req.body)
+  // IS THE ENTRY A VALID MESSAGE?
+  if (entry && entry.message) {
+    if (entry.message.attachments) {
+      // NOT SMART ENOUGH FOR ATTACHMENTS YET
+      FB.newMessage(entry.sender.id, "That's interesting!")
+    } else {
+      // SEND TO BOT FOR PROCESSING
+      Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
+        FB.newMessage(sender, reply)
+      })
+    }
   }
+
+  res.sendStatus(200)
+
+
+
+  // if (req.body.object == "page") {
+  //   // Iterate over each entry
+  //   // There may be multiple entries if batched
+  //   req.body.entry.forEach(function(entry) {
+  //     // Iterate over each messaging event
+  //     entry.messaging.forEach(function(event) {
+  //       if (event.postback) {
+  //         processPostback(event);
+  //       }
+  //     });
+  //   });
+
+  //   res.sendStatus(200);
+  // }
 
 })
 
