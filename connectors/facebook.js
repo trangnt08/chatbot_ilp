@@ -7,17 +7,17 @@ var Config = require('../config')
 var newRequest = request.defaults({
 	uri: 'https://graph.facebook.com/v2.6/me/messages',
 	method: 'POST',
-	// json: true,
-	json: {
-		message: {
-            attachment: {
-            	"setting_type":"greeting",
-			  	"greeting":{
-			    	"text":"Timeless apparel for the masses."
-			  	}
-            }
-        }
-	},
+	json: true,
+	// json: {
+	// 	message: {
+ //            attachment: {
+ //            	"setting_type":"greeting",
+	// 		  	"greeting":{
+	// 		    	"text":"Timeless apparel for the masses."
+	// 		  	}
+ //            }
+ //        }
+	// },
 	qs: {
 		access_token: Config.FB_PAGE_TOKEN
 	},
