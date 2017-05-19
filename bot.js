@@ -42,15 +42,15 @@ var read = function (sender, message, reply) {
 	else if(message === 'start') {
 		new CronJob('30 * * * * *', function() {
 
-			message= yesno.ask('Are you sure you want to continue?', true, function(ok) {
-    			if(ok) {
-        			console.log("Yay!");
-    			} else {
-        			console.log("Nope.");
-    			}
-			});
+			// yesno.ask('Are you sure you want to continue?', true, function(ok) {
+   //  			if(ok) {
+   //      			console.log("Yay!");
+   //  			} else {
+   //      			console.log("Nope.");
+   //  			}
+			// });
 
-  		// message = 'i send this message every 10 second';
+  		message = 'i send this message every 10 second';
   		reply(sender,message);
 		}, null, true, 'Asia/Ho_Chi_Minh');
 	}
