@@ -45,81 +45,87 @@ app.get('/webhooks', function (req, res) {
 
 // to send messages to facebook
 app.post('/webhooks', function (req, res) {
-  var entry = FB.getMessageEntry(req.body)
-  // IS THE ENTRY A VALID MESSAGE?
-  if (entry && entry.message) {
-    if (entry.message.attachments) {
-      // NOT SMART ENOUGH FOR ATTACHMENTS YET
-      FB.newMessage(entry.sender.id, "That's interesting!")
-    } else {
-      // SEND TO BOT FOR PROCESSING
-      Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
-        FB.newMessage(sender, reply)
-      })
-    }
+  // var entry = FB.getMessageEntry(req.body)
+  // // IS THE ENTRY A VALID MESSAGE?
+  // if (entry && entry.message) {
+  //   if (entry.message.attachments) {
+  //     // NOT SMART ENOUGH FOR ATTACHMENTS YET
+  //     FB.newMessage(entry.sender.id, "That's interesting!")
+  //   } else {
+  //     // SEND TO BOT FOR PROCESSING
+  //     Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
+  //       FB.newMessage(sender, reply)
+  //     })
+  //   }
+  // }
+
+  // res.sendStatus(200)
+
+
+
+  if (req.body.object == "page") {
+    // Iterate over each entry
+    // There may be multiple entries if batched
+    req.body.entry.forEach(function(entry) {
+      // Iterate over each messaging event
+      entry.messaging.forEach(function(event) {
+        if (event.postback) {
+          processPostback(event);
+        }
+      });
+    });
+
+    res.sendStatus(200);
   }
 
-  res.sendStatus(200)
 })
 
 
+function processPostback(event) {
+  var senderId = event.sender.id;
+  var payload = event.postback.payload;
 
-function sendTextMessage (sender, text) {
-  let messageData = { text:text }
-  
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {access_token:token},
-    method: 'POST',
-    json: {
-      recipient: {id:sender},
-      message: messageData,
-    }
-  }, function(error, response, body) {
-    if (error) {
-      console.log('Error sending messages: ', error)
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error)
-    }
-  })
-}
-
-function sendYesNo (argument) {
-  let messageData = {
-    "recipient":{
-    "id":"USER_ID"
-  },
-  "message":{
-    "text":"Pick a color:",
-    "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+  if (payload === "Greeting") {
+    // Get user's first name from the User Profile API
+    // and include it in the greeting
+    request({
+      url: "https://graph.facebook.com/v2.6/" + senderId,
+      qs: {
+        access_token: FB_PAGE_TOKEN,
+        fields: "first_name"
       },
-      {
-        "content_type":"text",
-        "title":"Green",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+      method: "GET"
+    }, function(error, response, body) {
+      var greeting = "";
+      if (error) {
+        console.log("Error getting user's name: " +  error);
+      } else {
+        var bodyObj = JSON.parse(body);
+        name = bodyObj.first_name;
+        greeting = "Hi " + name + ". ";
       }
-    ]
-  }
+      var message = greeting + "My name is SP Movie Bot. I can tell you various details regarding movies. What movie would you like to know about?";
+      sendMessage(senderId, {text: message});
+    });
   }
 }
 
-
-request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {access_token:token},
-    method: 'POST',
+// sends message to user
+function sendMessage(recipientId, message) {
+  request({
+    url: "https://graph.facebook.com/v2.6/me/messages",
+    qs: {access_token: FB_PAGE_TOKEN},
+    method: "POST",
     json: {
-      recipient: {id:sender},
-      message: messageData,
+      recipient: {id: recipientId},
+      message: message,
     }
   }, function(error, response, body) {
     if (error) {
-      console.log('Error sending messages: ', error)
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error)
+      console.log("Error sending message: " + response.error);
     }
-  })
+  });
+}
+
+
+
