@@ -19,6 +19,54 @@ var url = 'mongodb://localhost:27017/studentdb';
 
 // LETS MAKE A SERVER!
 var app = express()
+
+
+request.post({
+  method: 'POST',
+  uri: 'https://graph.facebook.com/v2.6/me/thread_settings?access_token=${EAAEIatxxxLUBAC1bCUEm9BlPRveDbEGkvol8jaYoWZAZBripXCHSjNJyEc0DoI5dktda0ym2VZAW5qOIJQM5cIRBUGcraRo3LtTf5q5HEXoIbgG6FxtRYO0hf9D8R0tlyNZC2ah7DiaFuDiZCFfRNnVMxrFKzOGChyDgPh4DiiQZDZD}',
+  qs: {
+    "setting_type":"call_to_actions",
+    "thread_state":"new_thread",
+    "call_to_actions":[{
+      "payload":"USER_DEFINED_PAYLOAD"
+    }]
+  },
+  json: true
+}, (err, res, body) =>{
+
+});
+
+request({
+    method: 'POST',
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {
+        access_token: EAAEIatxxxLUBAC1bCUEm9BlPRveDbEGkvol8jaYoWZAZBripXCHSjNJyEc0DoI5dktda0ym2VZAW5qOIJQM5cIRBUGcraRo3LtTf5q5HEXoIbgG6FxtRYO0hf9D8R0tlyNZC2ah7DiaFuDiZCFfRNnVMxrFKzOGChyDgPh4DiiQZDZD
+    },
+    json: {
+        recipient: {
+            id: SENDER_ID
+        },
+        message: {
+            attachment: {
+                type: "template",
+                payload: {
+                    template_type: "generic",
+                    elements: {
+                        "title": "Your Title",
+                        "subtitle": "Welcome to my messenger bot",
+                        "setting_type":"greeting",
+                        "greeting":{
+                        "text":"Hi {{user_first_name}}, welcome to this bot."
+                      }
+                    }
+                }
+            }
+        }
+    }
+}, (err, res, body) => {
+    // Deal with the response
+});
+
 app.set('port', (process.env.PORT) || 5000)
 // SPIN UP SERVER
 app.listen(app.get('port'), function () {
