@@ -35,31 +35,31 @@ var findOrCreateSession = function (fbid) {
 
 
 var user1 = {
-id:'1446643885400279',      //string
+id:'1402796169777763',      //string
 schedule: [{mon:'Toan' ,
 			time: {hhmm: '18:04',dow: 'wed'}},
 			{mon:'Ly' ,
-			time: {hhmm: '11:17',dow: 'mon'}} ]
+			time: {hhmm: '11:22',dow: 'mon'}} ]
 }
 
 var user2 = {
-id:	'1366355130123530',
+id:	'1545099455522713',
 schedule: [{mon:'Toan' ,
 			time: {hhmm: '14:00',dow: 'wed'}},
 			{mon:'Van' ,
-			time: {hhmm: '11:16',dow: 'mon'}} ]
+			time: {hhmm: '11:21',dow: 'mon'}} ]
 }
 
 var user_list = [user1,user2]
 console.log(user_list)
 
 var getScheduleById = function(id) {
-var i;
-for (i = 0;i<user_list.length;i++) {
-if(id === user_list[i].id){
-return user_list[i].schedule;
-}
-}
+	var i;
+	for (i = 0;i<user_list.length;i++) {
+		if(id === user_list[i].id){
+			return user_list[i].schedule;
+		}
+	}
 }
 
 
