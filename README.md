@@ -1,44 +1,4 @@
-# 🤖 Add Wit.ai to Your Facebook Messenger bot
-
-![Alt text](/demo/Demo.gif)
-
-Facebook Messenger is a platform that reaches over a billion people world wide. Now that Facebook has opened up access to sending and receiving messages many new opportunities open up.
-
-You can jack up your chat bot’s smarts with two tech buzzwords: natural language processing (NLP) and natural language understanding (NLU). Those two things can make your chat bot not awkwardly ask you again and again what someone just said.
-
-You can read the [5 min quickstart](https://wit.ai/docs/quickstart) the Wit.ai team prepared but it's really only meant for beginners and not for intermediate hackers.
-
-So instead here is how to add Wit.ai to do real things in 30 minutes.
-
-## 🤔 Firstly, what’s the difference between NLP and NLU?
-
-NLP helps you break down a sentence into things called entities. It’s like primary school for your bot. For example, NLP can read the sentence “Sally sold seashells by the seashore” and figure out there’s an entity Sally, that there’s another entity sold, that there are entities seashells and seashore.
-
-Sometimes just having words in a sentence is enough. You can extract category or keywords and from there you can hack your chat bot to do something. But for more smarts you need to take your bot to the equivalent of university.
-NLU helps you figure out what that sentence meant. Sally did something with something. And because of that the chat bot can then react and respond based on what Sally did do and with what. In other words, with NLU your chat bot can figure out human concepts like intent or sentiment.
-
-## 🏃 Get ready!
-
-If you have not built a chat bot before then read my other tutorial first: [http://github.com/jw84/messenger-bot-tutorial](http://github.com/jw84/messenger-bot-tutorial)
-
-Be sure you know how to deploy a Heroku server. You can then git clone this repository, running npm install, and get started.
-
-### *Setup Wit.ai*
-
-1. Sign up for a Wit.ai account here: https://wit.ai
-
-2. Go clone my weather app: [https://wit.ai/jw84/weather](https://wit.ai/jw84/weather)
-
-3. Find the app token in your weather app so we can test everything is working. In your app go to the Settings page then find the “Server Access Token” in API Details.
-
-![Alt text](/demo/Demo1.jpg)
-
-Let’s test first that the token works by running this command in your Terminal:
-
-	curl -H 'Authorization: Bearer <YOUR TOKEN HERE>' 'https://api.wit.ai/message?v=20160526&q=what%20is%20the%20weather%20in%20New%20York'
-
-You should get back a response like:
-
+tungtt
 	{
 	  "msg_id" : "14735f29-daa9-4553-a259-24cfa8c4ba42",
 	  "_text" : "what is the weather in New York",
