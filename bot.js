@@ -36,7 +36,7 @@ var findOrCreateSession = function (fbid) {
 var user1 = {
 id:'1446643885400279',      //string
 schedule: [{mon:'Toan' ,
-			time: {hhmm: '10:78',dow: 'mon'}},
+			time: {hhmm: '11:00',dow: 'mon'}},
 			{mon:'Ly' ,
 			time: {hhmm: '18:05',dow: 'fri'}} ]
 }
@@ -44,7 +44,7 @@ schedule: [{mon:'Toan' ,
 var user2 = {
 id:	'1366355130123530',
 schedule: [{mon:'Toan' ,
-			time: {hhmm: '10:59',dow: 'mon'}},
+			time: {hhmm: '11:01',dow: 'mon'}},
 			{mon:'Van' ,
 			time: {hhmm: '17:57',dow: 'fri'}} ]
 }
