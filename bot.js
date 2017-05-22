@@ -39,7 +39,7 @@ id:'1446643885400279',      //string
 schedule: [{mon:'Toan' ,
 			time: {hhmm: '18:04',dow: 'wed'}},
 			{mon:'Ly' ,
-			time: {hhmm: '11:04',dow: 'mon'}} ]
+			time: {hhmm: '10:41',dow: 'mon'}} ]
 }
 
 var user2 = {
@@ -47,7 +47,7 @@ id:	'1366355130123530',
 schedule: [{mon:'Toan' ,
 			time: {hhmm: '14:00',dow: 'wed'}},
 			{mon:'Van' ,
-			time: {hhmm: '11:05',dow: 'mon'}} ]
+			time: {hhmm: '10:40',dow: 'mon'}} ]
 }
 
 var user_list = [user1,user2]
@@ -155,6 +155,9 @@ module.exports = {
 	findOrCreateSession: findOrCreateSession,
 	read: read,
 }
+
+
+
 // 'use strict'
 
 // var Config = require('./config')
@@ -193,7 +196,7 @@ module.exports = {
 // var user1 = {
 // id:'1446643885400279',      //string
 // schedule: [{mon:'Toan' ,
-// 			time: {hhmm: '11:00',dow: 'mon'}},
+// 			time: {hhmm: '18:04',dow: 'wed'}},
 // 			{mon:'Ly' ,
 // 			time: {hhmm: '18:05',dow: 'fri'}} ]
 // }
@@ -201,7 +204,7 @@ module.exports = {
 // var user2 = {
 // id:	'1366355130123530',
 // schedule: [{mon:'Toan' ,
-// 			time: {hhmm: '11:01',dow: 'mon'}},
+// 			time: {hhmm: '14:00',dow: 'wed'}},
 // 			{mon:'Van' ,
 // 			time: {hhmm: '17:57',dow: 'fri'}} ]
 // }
@@ -217,37 +220,17 @@ module.exports = {
 // 	}
 // }
 
+
 // var time_to_cron = function(sched_time) {
-//  	var min_hours_arr = sched_time.time.hhmm.split(':');
-//  	var dow_cron = "";
-// 	switch(sched_time.time.dow) {
-// 		case 'sun':
-// 			dow_cron = '0';
-// 			break;
-// 		case 'mon':
-// 			dow_cron = '1';
-// 			break;
-// 		case 'tue':
-// 			dow_cron = '2';
-// 			break;
-// 		case 'wed':
-// 			dow_cron = '3';
-// 			break;
-// 		case 'thu':
-// 			dow_cron = '4';
-// 			break;
-// 		case 'fri':
-// 			dow_cron = '5';
-// 			break;
-// 		case 'sat':
-// 			dow_cron = '6';
-// 			break;
-// 		default:
-// 			break;
-// 	}
-// 	 var cron = '00 ' + min_hours_arr[1] + ' ' + min_hours_arr[0] + ' * * ' + dow_cron ;
-// 	 return cron;
+//  var min_hours_arr = sched_time.time.hhmm.split(':');
+//  var dow_cron = "";
+//  if(sched_time.time.dow === 'fri'){
+//  	dow_cron = '5';
+//  }
+//  var cron = '00 ' + min_hours_arr[1] + ' ' + min_hours_arr[0] + ' * * ' + dow_cron ;
+//  return cron;
 // }
+
 
 
 // var read = function (sender, message, reply) {
