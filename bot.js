@@ -114,7 +114,7 @@ var read = function (sender, message, reply) {
 
 		var job1 = new  CronJob(cron1, function() {
 
-  	message = sender + ' co lich hoc mon ' + schedule[1].mon + 'luc' + schedule[1].time.hhmm;
+  	message = sender + ' co lich hoc mon ' + schedule[1].mon + ' luc ' + schedule[1].time.hhmm;
   	reply(sender,message);
 	}, null, true, 'Asia/Ho_Chi_Minh');
 
