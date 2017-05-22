@@ -33,6 +33,66 @@ var findOrCreateSession = function (fbid) {
   return sessionId
 }
 
+var user1 = {
+id:'1446643885400279',      //string
+schedule: [{mon:'Toan' ,
+			time: {hhmm: '10:78',dow: 'mon'}},
+			{mon:'Ly' ,
+			time: {hhmm: '18:05',dow: 'fri'}} ]
+}
+
+var user2 = {
+id:	'1366355130123530',
+schedule: [{mon:'Toan' ,
+			time: {hhmm: '10:59',dow: 'mon'}},
+			{mon:'Van' ,
+			time: {hhmm: '17:57',dow: 'fri'}} ]
+}
+
+var user_list = [user1,user2]
+console.log(user_list)
+var getScheduleById = function(id) {
+	var i;
+	for (i = 0;i<user_list.length;i++) {
+		if(id === user_list[i].id){
+		return user_list[i].schedule;
+		}
+	}
+}
+
+var time_to_cron = function(sched_time) {
+ 	var min_hours_arr = sched_time.time.hhmm.split(':');
+ 	var dow_cron = "";
+	switch(sched_time.time.dow) {
+		case 'sun':
+			dow_cron = '0';
+			break;
+		case 'mon':
+			dow_cron = '1';
+			break;
+		case 'tue':
+			dow_cron = '2';
+			break;
+		case 'wed':
+			dow_cron = '3';
+			break;
+		case 'thu':
+			dow_cron = '4';
+			break;
+		case 'fri':
+			dow_cron = '5';
+			break;
+		case 'sat':
+			dow_cron = '6';
+			break;
+		default:
+			break;
+	}
+	 var cron = '00 ' + min_hours_arr[1] + ' ' + min_hours_arr[0] + ' * * ' + dow_cron ;
+	 return cron;
+}
+
+
 var read = function (sender, message, reply) {
 	if (message === 'hello') {
 		// Let's reply back hello
@@ -40,7 +100,17 @@ var read = function (sender, message, reply) {
 		reply(sender, message)
 	} 
 	else if(message === 'start') {
-		new CronJob('30 * * * * *', function() {
+		var schedule = getScheduleById(sender);
+		var cron1 = time_to_cron(schedule[1]);
+		//var cron1 = '* 05 * * * *';
+
+		var job1 = new  CronJob(cron1, function() {
+
+		  	message = sender + ' co lich hoc mon ' + schedule[1].mon + 'luc' + schedule[1].time.hhmm;
+		  	reply(sender,message);
+		}, null, true, 'Asia/Ho_Chi_Minh');
+
+		// new CronJob('30 * * * * *', function() {
 
 			// yesno.ask('Are you sure you want to continue?', true, function(ok) {
    //  			if(ok) {
@@ -50,9 +120,9 @@ var read = function (sender, message, reply) {
    //  			}
 			// });
 
-  		message = 'i send this message every 10 second';
-  		reply(sender,message);
-		}, null, true, 'Asia/Ho_Chi_Minh');
+  // 		message = 'i send this message every 10 second';
+  // 		reply(sender,message);
+		// }, null, true, 'Asia/Ho_Chi_Minh');
 	}
 	else {
 		// Let's find the user
